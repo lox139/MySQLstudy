@@ -1,0 +1,84 @@
+{\rtf1\ansi\ansicpg936\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset134 PingFangSC-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red89\green138\blue67;\red23\green23\blue23;}
+{\*\expandedcolortbl;;\cssrgb\c41569\c60000\c33333;\cssrgb\c11765\c11765\c11765;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17880\viewh16160\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 [mysqld]\
+port=3306\
+datadir=/data/mysql/data\
+pid-file=/data/mysql/data/mysqld.pid\
+socket=/tmp/mysql.sock\
+log-error=/log/mysql/mysqld.err\
+user= mysql\
+secure_file_priv=/data/mysql/mysql-files\
+local_infile=OFF\
+\
+symbolic-links=0\
+log-bin = /log/mysql/mysql-bin\
+expire-logs-days = 14\
+binlog_format = ROW\
+innodb_file_per_table = 1\
+sync_binlog=1\
+innodb_flush_log_at_trx_commit=1\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+#5.7.25
+\f2 \'d2\'d4\'cf\'c2\'b5\'c4\'b0\'e6\'b1\'be\'ca\'b9\'d3\'c3
+\f1 innodb_flush_method=O_DIRECT
+\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 innodb_flush_method=O_DIRECT_NO_FSYNC\
+innodb_max_dirty_pages_pct = 70\
+# 
+\f2 \'b5\'c8\'d3\'da
+\f0 200*
+\f2 (iops/1500)
+\f0 \
+innodb_io_capacity=2000\
+#
+\f2 \'b5\'c8\'d3\'da
+\f0 cpu 
+\f2 \'b5\'c4
+\f0 core
+\f2 \'ca\'fd
+\f0 \
+innodb_write_io_threads=8\
+innodb_read_io_threads=8\
+#
+\f2 \'b5\'c8\'d3\'da
+\f0 cpu 
+\f2 \'b5\'c4
+\f0 core
+\f2 \'ca\'fd\'d2\'bb\'b0\'eb
+\f0 \
+innodb_purge_threads=4\
+innodb_page_cleaners=4\
+innodb_log_group_home_dir=/log/mysql\
+innodb_log_files_in_group = 3\
+innodb_log_file_size = 3G\
+innodb_buffer_pool_instances = 1\
+#
+\f2 \'b5\'c8\'d3\'da\'c4\'da\'b4\'e6
+\f0 70%\
+innodb_buffer_pool_size = 15G\
+gtid_mode=ON\
+enforce_gtid_consistency=ON\
+server-id = 1115\
+# slave\
+slave-parallel-type=LOGICAL_CLOCK\
+#
+\f2 \'b5\'c8\'d3\'da
+\f0 cpu 
+\f2 \'b5\'c4
+\f0 core
+\f2 \'ca\'fd
+\f0 \
+slave-parallel-workers=8\
+master_info_repository=TABLE\
+relay_log_info_repository=TABLE\
+relay_log_recovery=ON\
+log-slave-updates=1}
