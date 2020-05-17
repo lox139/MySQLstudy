@@ -22,12 +22,7 @@ wget "https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-community-libs-compat-
 wget "https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-community-libs-$version-1.el7.x86_64.rpm"
 wget "https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-$version-el7-x86_64.tar.gz"
 
-rpm -ivh "mysql-community-common-$version-1.el7.x86_64.rpm"
-rpm -ivh "mysql-community-libs-$version-1.el7.x86_64.rpm"
-rpm -ivh "mysql-community-libs-compat-$version-1.el7.x86_64.rpm"
-rpm -ivh "mysql-community-client-$version-1.el7.x86_64.rpm"
-
-
+yum -y install mysql-community-common-$version-1.el7.x86_64.rpm mysql-community-libs-$version-1.el7.x86_64.rpm mysql-community-libs-compat-$version-1.el7.x86_64.rpm mysql-community-client-$version-1.el7.x86_64.rpm
 
 tar xzvf "mysql-$version-el7-x86_64.tar.gz"
 ln -snf "mysql-$version-el7-x86_64" mysql
@@ -72,7 +67,7 @@ innodb_page_cleaners=$(cat my.cnf | grep innodb_page_cleaners)
 sed -i "s/$innodb_page_cleaners/innodb_page_cleaners=$hfcores/"  my.cnf
 
 innodb_buffer_pool_size=$(cat my.cnf | grep innodb_buffer_pool_size)
-ibpzvalue=$[$mem_total * 7 / 10  / 1024 / 1024 + 1]
+ibpzvalue="$[$mem_total * 7 / 10  / 1024 / 1024 + 1]G"
 sed -i "s/$innodb_buffer_pool_size/innodb_buffer_pool_size=$ibpzvalue/"  my.cnf
 
 cd /usr/local/mysql
